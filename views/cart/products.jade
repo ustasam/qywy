@@ -1,0 +1,156 @@
+
+include ../head
+
+body
+
+	script(type='text/javascript', src="/jquery-tmpl/jquery.tmpl.min.js")
+
+	script(type='text/javascript', src="/js/jquery-textFill-0.1.js")
+	
+	link(rel="stylesheet", type="text/css", href="/css/products.css")
+	
+	script(type='text/javascript', src="/jPlayer/jquery.jplayer.min.js")	
+	script(type='text/javascript', src="/js/player.js")
+	
+	script(type='text/javascript', src="/js/scanean13.js")
+	script(type='text/javascript', src="/js/products.js")
+	
+	//-----------------------------------------------------------------------------------------------------
+	script(type='text/javascript')
+		$(document).ready(function(){
+			$("#total").dialog({
+				autoOpen: true, //true
+				show: "blind",
+				hide: "explode",
+				width: 600,
+				height: 450,
+				title: "Корзина"
+			});
+
+			$("#edit").dialog({
+				autoOpen: false, //true
+				width: 600, height: 450,
+				title: "Редактирование: "
+			});
+			
+			$("#show").dialog({
+				autoOpen: false, //true
+				show: "blind", hide: "explode",
+				width: 600, height: 450,
+				title: "Характеристики: "
+			});
+			
+			jQuery.template('items', jQuery('#itemsTemplate').html());
+			jQuery.template('categories', jQuery('#itemsTemplate').html());
+			jQuery.template('orders', jQuery('#ordersTemplate').html());		
+		});
+		
+		function dialog(target, item)
+		{
+			$(target).dialog('open');
+
+			for(i in item) {
+				jQuery(target + ' .value[name = "' + i +'"], ' 
+					+ target + ' input[name = "' + i +'"]').each(function(){
+						console.log($(this));
+					if (this.hasOwnProperty("value")){
+						$(this).val(item[i]);
+					}else{
+						$(this).text(item[i]);
+					}
+				});
+			}
+			jQuery(target + ' img.value').attr("src", item.image);
+		}
+		
+		function newItem()
+		{
+			edit(item);
+		}
+		
+		function addItem(item)
+		{
+			
+		}
+		
+		function delItem(item)
+		{
+			
+		}
+	
+	//-----------------------------------------------------------------------------------------------------
+
+	script(id="itemsTemplate", type="text/x-jquery-tmpl")
+		div(class="item", id="id{{= id}}", image="{{= image}}")
+			img(src="{{= image}}")
+			p {{= name}}	
+		img.icon(src="/icon/add2.png", onClick='order.add($(this).tmplItem().data);')
+		img.icon(src="/icon/magnifier.png", onClick='dialog("#show", $(this).tmplItem().data);')
+		img.icon(src="/icon/edit.png", onClick='dialog("#edit", $(this).tmplItem().data);')
+		img.icon.ml16(src="/icon/close.gif", onClick='delItem($(this).tmplItem().data);')
+				
+	script(id="ordersTemplate", type="text/x-jquery-tmpl")
+		tr
+			td.label {{= item.name}}
+			td.price {{= Number(item.price).toFixed(2)}}
+			td.amount {{= amount}}
+			td.sum {{= Number(sum).toFixed(2)}}
+			td.add
+				img.icon(src="/icon/up.jpg", id="id{{= item.id}}", onClick='order.add( $(this).tmplItem().data.item );')
+			td.sub
+				img.icon(src="/icon/down.jpg", id="id{{= item.id}}", onClick='order.add( $(this).tmplItem().data.item, -1);')
+			td.del
+				img.icon(src="/icon/close.gif", id="id{{= item.id}}", onClick='order.add( $(this).tmplItem().data.item, 0);')
+
+	#hidden
+		#edit
+			#label.nowrap Наименование:
+				input.label.text.ml16(name="name")
+			#label.nowrap Цена:
+				input.label.text.ml16(name="price")
+			img.value
+			img.icon(src="/icon/close.gif", id="id{{= id}}", onClick='order.add( $("#" + this.id).tmplItem().data, 0);')
+			input.btn(type="button", value="Сохранить", onClick='save();')
+
+		#show
+			#label.nowrap Наименование:
+				p.value(name="name")
+			#label.nowrap Цена:
+				p.value(name="price")
+			img.value
+			img.icon(src="/icon/close.gif", id="id{{= id}}", onClick='order.add( $("#" + this.id).tmplItem().data, 0);')
+			input.btn(type="button", value="Сохранить", onClick='save();')
+	//-----------------------------------------------------------------------------------------------------
+	#categories-frame
+		#label Категории
+			img.icon.ml16(src="/icon/add.png", onClick='newItem();')
+		#categories
+		
+	#products-frame
+		#label.nowrap Товары
+			img.icon.ml16(src="/icon/add.png", onClick='newItem();')
+		#products
+		
+	#total
+		table#total
+			thead
+				tr
+					th Товар
+					th.price Цена
+					th#nowrap.amount Кол-во
+					th.sum Сумма
+					th
+					th
+					th
+			tbody
+				tr
+					td.label Апельсинка кудрявая и сладкая
+					td.price 2333.33
+					td.amount 54
+					td.sum 1200.23
+				tr
+					td.label Хлебопекарное изделие
+					td.price 2333.33
+					td.amount 54
+					td.sum 1200.23
+		

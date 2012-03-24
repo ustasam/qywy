@@ -1,0 +1,22 @@
+{
+  "index": {
+    "title": "Главная",
+    "position": "1",
+    "text": "<div style=\"text-align: center;\">555ffffff4444444ss555ss555s555s5555555555sss22222222<b>2555222255522222222a</b>2ss2q<u>qqqqq3ss33</u>333aawwsss</div>\n<p>dsadsad555\nds555ada555555</p>"
+  },
+  "vasia": {
+    "title": "Ваяя",
+    "text": "здесь был вася",
+    "position": 0
+  },
+  "петя": {
+    "title": "петя",
+    "position": "4",
+    "text": "<div style=\"text-align: center;\">петка был2</div>"
+  },
+  "aboutcms": {
+    "title": "aboutcms",
+    "position": "0",
+    "text": "<div><span style=\"font-family: Arial, Helvetica, sans-serif; font-style: normal; \"><font size=\"5\">About cms.</font></span></div><div style=\"border-style: initial; border-color: initial; font-style: normal; font-size: 13px; font-family: Arial, Helvetica, sans-serif; \"><br><div style=\"border-style: initial; border-color: initial; font-size: 13px; \"><a href=\"http://nodejs.org/\" style=\"border-style: initial; border-color: initial; font-size: 13px; \">http://nodejs.org/</a></div><div style=\"border-style: initial; border-color: initial; font-size: 13px; \"><a href=\"http://nicedit.com/\" style=\"border-style: initial; border-color: initial; font-size: 13px; \">http://nicedit.com/</a></div><div style=\"border-style: initial; border-color: initial; font-size: 13px; \"><a href=\"http://jquery.com/\" style=\"border-style: initial; border-color: initial; font-size: 13px; \">http://jquery.com/</a></div><div style=\"border-style: initial; border-color: initial; font-size: 13px; \"><a href=\"http://jqueryui.com/\" style=\"border-style: initial; border-color: initial; font-size: 13px; \">http://jqueryui.com/</a></div><div style=\"border-style: initial; border-color: initial; font-size: 13px; \"><a href=\"http://fancybox.net/\" style=\"border-style: initial; border-color: initial; font-size: 13px; \">http://fancybox.net/</a></div></div>"
+  }
+}

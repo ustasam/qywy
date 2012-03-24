@@ -1,0 +1,25 @@
+
+table(style="padding-left: 20%; padding-right: 20%")
+	each file in files
+		tr
+			td
+				a(href="/uploads/#{file}")= file
+			td
+				a(onClick="deleteFile('#{file}');", href="#")
+					img(src="/icon/close.gif")
+					
+div(id="status", style="display:none; right:35px; top: 40px; position:fixed; background: #DDDDFF; padding: 8px 20px 8px 20px") Удалено
+					
+script(type='text/javascript')
+	
+	function deleteFile(file)
+	{
+		if (confirm('Вы действительно хотите удалить файл ' + file + '?'))
+			$.get("/deleteFile/" + file, function(data) {
+				if(data == 'ok')
+					$('#status').fadeIn(200, function() {
+						$('#status').fadeOut(1600);
+						window.location.href="/files";
+					});
+			});
+	}

@@ -1,0 +1,30 @@
+ie(param, val)
+	unquote("//" + param + ": " + val + "; ")
+
+box-shadow()
+	box-shadow 1px 1px 4px #CCC, inset 0px 0px 8px #CCC
+	
+iebox-shadow()
+	ie filter unquote("
+		progid:DXImageTransform.Microsoft.Shadow(color='#042b47', Direction=45, strength=4)
+		progid:DXImageTransform.Microsoft.Shadow(color='#042b47', Direction=135, strength=4)
+		progid:DXImageTransform.Microsoft.Shadow(color='#042b47', Direction=225, strength=4)
+		progid:DXImageTransform.Microsoft.Shadow(color='#042b47', Direction=315, strength=4)")
+	ie position relative;
+	ie top -12px;
+	ie left -12px;
+	//ie zoom 1
+	
+size(width, height)
+	width width
+	height height
+
+pm(padding margin)
+	padding padding
+	margin margin
+	
+border-radius(radius)
+	-moz-border-radius radius
+	-webkit-border-radius radius
+	-khtml-border-radius radius
+	border-radius radius

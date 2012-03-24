@@ -1,0 +1,110 @@
+
+form(id="form")
+	div(style="margin-left:7%; padding-bottom:15px")
+		div(style="display: inline-block")
+			div Адрес:
+			input(type="text", name="index", value="#{index}")
+		div(style="display: inline-block")
+			div Заголовок:
+			input(type="text", name="title", value="#{data.title}")
+		div(style="display: inline-block")
+			div Позиция:
+			input(type="text", name="position", value="#{data.position}")
+	textarea(id="text", name="text", style="width: 99.4%; height: 300px")= data.text
+	
+script(type="text/javascript", src="/nicEdit.js")
+script(type="text/javascript", src="/jqupload/js/vendor/jquery.ui.widget.js")
+script(type="text/javascript", src="/jqupload/js/jquery.iframe-transport.js")
+script(type="text/javascript", src="/jqupload/js/jquery.fileupload.js")
+
+#status(style="display:none; right:35px; top: 40px; position:fixed; background: #DDDDFF; padding: 8px 20px 8px 20px") Сохранено
+
+#fileupload
+#progress(style="display:none; right:35px; top: 40px; position:fixed; background: #DDDDFF; padding: 8px 20px 8px 20px")
+
+script(type='text/javascript')
+
+	function save()
+	{
+		var r = {};
+		$.map($("#form :input"), function(n, i)
+		{
+			r[n.name] = $(n).val();
+		});
+		
+		$.post("/update", r, function(data) {
+			if(data == 'ok')
+				$('#status').fadeIn(200, function() {
+					$('#status').fadeOut(1600);
+				});
+		});
+	}
+	
+	editor = new nicEditor({
+		fullPanel : true, 
+		uploadURI : "/upload",
+		onSave : function(content, id, instance) {
+			$('#text').val(content);
+			save();
+		}
+	});
+	
+	function insert(value)
+	{
+		var val = value;
+		
+		val = '<img src="' + val + '"/>';
+		
+		editor.nicInstances[0].nicCommand('insertHTML', val);// setContent(c);
+	}
+	
+	$(document).ready(function(){
+		editor.panelInstance('text');
+	
+		$('#fileupload').fileupload({
+			dataType: 'json',
+			url: '/upload',
+			sequentialUploads: true,
+			done: function (e, data) {
+				console.log('done');
+				console.log(data);
+				console.log(e);
+				for(i in data.result) insert(data.result[i]);
+			},
+			always: function (e, data) {
+				$('#progress').fadeOut(2600);
+			},
+			progress : function (e, data) {
+				var progress = parseInt(data.loaded / data.total * 100, 10);
+				$('#progress').text('Загрузка ' + data.files[0].name + ' ' + progress + '%');
+				$('#progress').fadeIn(200);
+				console.log('progress' + parseInt(data.loaded / data.total * 100, 10))
+				console.log(data);
+				console.log(editor);
+			}
+		});
+
+
+		var myEditor = new YAHOO.widget.Editor('msgpost', {
+			height: '300px',
+			width: '522px',
+			dompath: true, //Turns on the bar at the bottom
+			animate: true //Animates the opening, closing and moving of Editor windows
+		});
+		myEditor.render();
+	});
+
+
+link(rel="stylesheet", type="text/css", href="http://yui.yahooapis.com/2.9.0/build/assets/skins/sam/skin.css")
+
+script(type="text/javascript", src="http://yui.yahooapis.com/2.9.0/build/yahoo-dom-event/yahoo-dom-event.js")
+script(type="text/javascript", src="http://yui.yahooapis.com/2.9.0/build/element/element-min.js")
+
+script(type="text/javascript", src="http://yui.yahooapis.com/2.9.0/build/container/container_core-min.js")
+script(type="text/javascript", src="http://yui.yahooapis.com/2.9.0/build/menu/menu-min.js")
+script(type="text/javascript", src="http://yui.yahooapis.com/2.9.0/build/button/button-min.js")
+
+script(type="text/javascript", src="http://yui.yahooapis.com/2.9.0/build/editor/editor-min.js")
+
+textarea(name="msgpost", id="msgpost", cols="50", rows="10", class="yui-skin-sam")
+	This text will be pre-loaded in the editor when it is rendered.

@@ -1,0 +1,15 @@
+
+form(name="input", action="/login", method="post")
+		
+		input(type="hidden", name="redir", value=redir)
+		
+		div(style="margin-left:35%")
+			div
+				p Имя:
+				input(type="text", name="name")
+
+				p Пароль:
+				input(type="password", name="password")
+	
+				p
+				input(type="submit", value="Войти")

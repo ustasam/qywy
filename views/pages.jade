@@ -1,0 +1,37 @@
+
+table(style="padding-left: 20%; padding-right: 20%")
+	each menu in pages
+		tr
+			td
+				a(href="/edit/#{menu.ref}")= menu.ref
+			td
+				a(href="/edit/#{menu.ref}")= menu.title
+			td
+				a(href="/edit/#{menu.ref}")= menu.position
+			td
+				a(onClick="deletePage('#{menu.ref}');", href="#")
+					img(src="/icon/close.gif")
+	
+a(onClick="createPage();", href="#") Создать страницу
+
+div(id="status", style="display:none; right:35px; top: 40px; position:fixed; background: #DDDDFF; padding: 8px 20px 8px 20px") Удалено
+
+script(type='text/javascript')
+	
+	function createPage()
+	{
+		window.location.href="/edit/Новая" + Math.floor(Math.random() * 100000);
+	}
+	
+	function deletePage(ref)
+	{
+		if (confirm('Вы действительно хотите удалить страницу?'))
+			$.get("/delete/" + ref, function(data) {
+				if(data == 'ok')
+					$('#status').fadeIn(200, function() {
+						$('#status').fadeOut(1600);
+						window.location.href="/admin";
+					});
+			});
+	}
+	

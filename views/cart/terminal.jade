@@ -1,0 +1,157 @@
+
+include ../head
+
+body
+
+	script(type='text/javascript', src="/jquery-tmpl/jquery.tmpl.min.js")
+
+	
+	script(type='text/javascript', src="/js/jquery-textFill-0.1.js")
+	
+	script(type='text/javascript', src="/jPlayer/jquery.jplayer.min.js")
+
+	link(rel="stylesheet", type="text/css", href="/css/terminal.css")
+	
+	script(type='text/javascript', src="/js/player.js")
+	script(type='text/javascript', src="/js/scanean13.js")
+	script(type='text/javascript', src="/js/products.js")
+	
+	script(type='text/javascript')
+		function resize(){
+			$("#products-frame").width(200);
+			
+			var margins = $("#categories-frame").outerHeight(true) - $("#categories-frame").height();
+			var height = $(window).height() - margins;
+			$("#categories-frame").height(height);	
+			$("#products-frame").height(height);
+			$("#total").height($(window).height() - ($("#total-frame").height() - $("#total").height() + margins));
+
+			var marginsh = $("#categories-frame").outerWidth(true) - $("#categories-frame").width();
+			$("#products-frame").width( $(window).width()
+				- $("#categories-frame").outerWidth(true) - $("#total").outerWidth(true) - marginsh * 2 - 0);
+		}
+		
+		$(document).ready(function(){
+			jQuery.template('items', jQuery('#itemsTemplate').html());		
+			jQuery.template('categories', jQuery('#itemsTemplate').html());
+			jQuery.template('orders', jQuery('#ordersTemplate').html());	
+			
+			$( "#calc button, #okcancel button" ).button();
+			$( "#calc button, #okcancel button" ).click(calcClick);
+			
+			$(window).resize(resize);
+			resize();
+		});
+		
+		var comma = 1;
+		function calcClick(){	
+			//now.aaa();
+			if (this.id >= 0 && this.id <= 9) {
+				if (comma == 1)
+				{
+					if (this.id == "00"){
+						order.paid += "00";
+					}else{
+						order.paid += "" + this.id*comma;
+					}
+				}else{
+					if (comma >= 0.01) order.paid = Number(order.paid) + Number(this.id * comma);
+					comma = comma * 0.1;
+				}
+			}
+			if (this.id == "," || this.id == "."){
+				order.paid = Number(order.paid) - Number(order.paid) % 1;
+				comma = 0.1;
+			}
+			if (this.id.toLowerCase() == "c") {order.paid = 0; comma = 1;}
+			if (this.id.toLowerCase() == "cancel"){
+				order = new Order();
+				comma = 1;
+			}
+			if (this.id.toLowerCase() == "ok"){
+				orders.push[order];
+				order = new Order();
+				comma = 1;
+			}
+			player.play("click");
+			order.render();
+		}
+		
+	//-----------------------------------------------------------------------------------------------------
+	
+	script(id="itemsTemplate", type="text/x-jquery-tmpl")
+		button(class="item", id="id{{= id}}", image="{{= image}}") {{= name}}
+	
+	script(id="ordersTemplate", type="text/x-jquery-tmpl")
+		tr
+			td.label {{= item.name}}
+			td.price {{= Number(item.price).toFixed(2)}}
+			td.amount {{= amount}}
+			td.sum {{= Number(sum).toFixed(2)}}
+	
+	//-----------------------------------------------------------------------------------------------------
+	#categories-frame
+		#label Категории
+		#categories
+	
+	#products-frame
+		#label Продукты
+		#products
+	#total-frame
+		#total
+			table#total
+				thead
+					tr
+						th Товар
+						th.price Цена
+						th#nowrap.amount Кол-во
+						th.sum Сумма
+				tbody
+					tr
+						td.label Апельсинка кудрявая и сладкая
+						td.price 2333.33
+						td.amount 54
+						td.sum 1200.23
+					tr
+						td.label Хлебопекарное изделие
+						td.price 2333.33
+						td.amount 54
+						td.sum 1200.23
+		#amount
+			table#amount
+				tr
+					td
+						#label Сдача
+						#change.dyn
+							span.val= "0000.00"		
+					td
+						#label Сумма
+						#summ.dyn
+							span.val= "0000.00"
+				tr
+					td
+						#label Внесено
+					td
+						#paid.dyn
+							span.val= "0000.00"
+		#calc
+			#nowrap
+				button(id="7") 7
+				button(id="8") 8
+				button(id="9") 9
+			#nowrap
+				button(id="4") 4
+				button(id="5") 5
+				button(id="6") 6
+			#nowrap
+				button(id="1") 1
+				button(id="2") 2
+				button(id="3") 3
+			#nowrap
+				button(id="0") 0
+				button(id="00") 00
+				button(id=",") ,
+		#okcancel
+			button(id="ok") OK
+			button(id="C") C
+			button(id="cancel") Отмена

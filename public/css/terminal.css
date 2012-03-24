@@ -1,0 +1,171 @@
+body {
+  background-color: #fefbf5;
+  font: normal 10pt Arial, Helvetica, sans-serif;
+  color: #555;
+  padding: 0;
+  margin: 0;
+}
+#nowrap .nowrap {
+  white-space: nowrap;
+  dsadsa: dsad;
+}
+#hidden {
+  display: none;
+}
+#label {
+  font-size: 10pt;
+  text-align: left;
+  padding-left: 8pt;
+  padding-top: 4pt;
+}
+.icon {
+  width: 16pt !important;
+  height: 16pt !important;
+  cursor: hand;
+  margin: 5px;
+}
+.btn {
+  margin: 5px;
+  background: #5a5655;
+  color: #fff;
+  padding: 2px 8px 2px 8px;
+  text-align: center;
+  border: 1px solid #5a5655;
+  text-decoration: none;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  vertical-align: baseline;
+}
+.text {
+  border: 1px solid #e0e0e0;
+  width: 25px;
+  padding: 1px 5px 1px 5px;
+}
+.ml16 {
+  margin-left: 16pt;
+}
+#categories-frame,
+#products-frame,
+#total-frame,
+#total,
+#amount,
+#cash,
+#calc,
+#okcancel,
+.frame,
+#summ,
+#change,
+#paid {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+  border: 0pt solid #808080;
+  padding: 0;
+  margin: 2pt;
+  box-shadow: 1px 1px 4px #ccc, inset 0px 0px 8px #ccc;
+  text-align: center !important;
+}
+#summ,
+#change,
+#paid {
+  background-color: GhostWhite;
+  width: 112pt;
+  height: 32pt;
+}
+#paid {
+  height: 25pt;
+}
+#categories-frame {
+  width: 90pt;
+  height: 97%;
+  float: left;
+}
+#products-frame {
+  width: 200px;
+  background-color: #fffdfb;
+  float: left;
+}
+#total-frame {
+  float: right;
+}
+button {
+  display: inline-block;
+  box-shadow: 1px 1px 4px #ccc, inset 0px 0px 8px #ccc;
+  margin: 2.3pt !important;
+  width: 74.03333333333333pt;
+  height: 53pt;
+}
+button.item img {
+  width: 74pt;
+  height: 74pt;
+}
+button.item span {
+  position: absolute;
+  bottom: 8%;
+  width: 100%;
+  padding: 0;
+  margin: !important;
+  font-weight: bold;
+  z-index: 2;
+}
+button:hover {
+  box-shadow: 1px 1px 4px #ccc, inset 0px 0px 8px #ccc;
+}
+button.item span:first-letter {
+  font-size: 110%;
+  font-style: italic;
+}
+#total-frame .ui-button-text {
+  padding: 0pt !important;
+  margin: 0pt !important;
+}
+#categories button {
+  width: 80pt;
+  height: 80pt;
+}
+#products button {
+  width: 80pt;
+  height: 80pt;
+}
+button span {
+  font-size: 32pt;
+  display: inline-block;
+}
+button#cancel span {
+  font-size: 18pt;
+  display: inline-block;
+}
+table#amount {
+  width: 238pt;
+  padding: 0;
+  margin: 0pt;
+}
+table#amount tr td {
+  padding: 2pt;
+  margin: 0pt;
+}
+table#total {
+  width: 238pt;
+  height: auto;
+  background-color: GhostWhite;
+  font-size: 12pt;
+  line-height: 0.75;
+  padding: 0;
+  margin: 0;
+}
+table#total th,
+td {
+  padding: 1px 5px 1px 5px;
+}
+table#total td {
+  border: 0px solid #808080;
+  border-width: 1px 0px 0px 0;
+}
+td.label {
+  font-size: 11pt;
+}
+span.val {
+  padding: 0;
+  margin: 0;
+}

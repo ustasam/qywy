@@ -1,0 +1,59 @@
+@import tools
+@import common
+	
+item-img-size = 120pt
+
+#categories-frame, #products-frame
+	//
+	
+#categories-frame, #products-frame, #total
+	border-radius radius
+	border 0pt solid grey
+	pm 0 2pt
+	box-shadow()
+	//ie border 1
+	text-align center!important
+
+#categories-frame
+	width 180pt
+	float left
+
+#products-frame
+	background-color lighten(background, 60%)
+	float left
+
+.item
+	cursor hand
+
+.item img
+	size item-img-size item-img-size
+	pm 2 2
+
+.value img
+	size item-img-size item-img-size
+	pm 2 2
+	
+.item:hover
+	box-shadow()
+	
+.item p:first-letter
+	font-size 110%
+	font-style italic
+	
+table#total
+	size total-width auto
+	background-color GhostWhite
+	font-size 12pt
+	line-height 0.75
+	pm 0 0
+
+table#total th,td
+	padding 1px 5px 1px 5px
+
+table#total td
+	border 0px solid grey
+	border-width 1px 0px 0px 0
+
+td.label
+	font-size 11pt
+

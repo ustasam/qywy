@@ -1,0 +1,25 @@
+
+form(name="input", action="/register", method="post")
+		
+		div(style="margin-left:35%")
+			div
+				p Имя:
+				input(type="text", name="name") =user.name
+				
+				p Email:
+				input(type="text", name="email") =user.email
+				
+				p Адрес:
+				input(type="text", name="address") =user.address
+				
+				p Телефон:
+				input(type="text", name="phone") =user.phone
+				
+				p Пароль:
+				input(type="password", name="password") =user.password
+	
+				p Повторить пароль:
+				input(type="password", name="password2") =user.password2
+	
+				p
+				input(type="submit", value="Зарегестрироватся")

@@ -1,0 +1,17 @@
+!!!
+html
+	include head
+	body
+		#page.container
+
+			#header
+				#logo= params.title
+			#mainmenu
+				include menu
+			//#breadcrumbs
+
+			#contents(style="margin-top: 30px")
+				#body!= body
+			#clear
+			#footer
+		include foot.jade
